@@ -1,7 +1,7 @@
 import { Module } from './module'
 
 export class Course {
-  public modules: Module[] = []
+  private readonly modules: Module[] = []
   public reference: string
   public description: string
 
@@ -12,5 +12,9 @@ export class Course {
 
   add (module: Module): void {
     this.modules.push(module)
+  }
+
+  includes (module: Module): boolean {
+    return this.modules.includes(module)
   }
 }
