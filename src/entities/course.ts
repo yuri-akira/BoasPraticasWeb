@@ -12,7 +12,13 @@ export class Course {
   }
 
   add (module: Module): void {
-    this.modules.push(module)
+    if (!this.includesModuleWithSameName(module)) {
+      this.modules.push(module)
+    }
+  }
+
+  private includesModuleWithSameName (module: Module): boolean {
+    return this.modules.find(mod => mod.name === module.name) !== undefined
   }
 
   includes (module: Module): boolean {
@@ -33,5 +39,9 @@ export class Course {
     }
     const from = this.position(lecture)
     moveInArray(this.modules, from - 1, to - 1)
+  }
+
+  get numberOfModules (): number {
+    return this.modules.length
   }
 }
